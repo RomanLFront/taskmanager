@@ -3,38 +3,32 @@ const completedTasks = [];
 let completedTaskCount = 0;
 
 const getTaskDescriptions = () => {
-  console.log(tasks.map((t) => t.description).join('; '));
+  return tasks.map((t) => t.description);
 };
 
 const getLongTasks = () => {
-  console.log(
-    tasks.filter((t) => t.title.length > 10 || t.description.length > 10),
-  );
+  return tasks.filter((t) => t.title.length > 10 || t.description.length > 10);
 };
 
 const getTasksByDateRange = (startDate, endDate, isCompleted = false) => {
   const start = new Date(startDate);
   const end = new Date(endDate);
   if (isCompleted) {
-    console.log(
-      tasks.filter(
-        (t) =>
-          t.createdDate >= start &&
-          t.createdDate <= end &&
-          t.completedDate &&
-          t.completedDate <= end,
-      ),
+    return tasks.filter(
+      (t) =>
+        t.createdDate >= start &&
+        t.createdDate <= end &&
+        t.completedDate &&
+        t.completedDate <= end,
     );
   } else {
-    console.log(
-      tasks.filter((t) => t.createdDate >= start && t.createdDate <= end),
-    );
+    return tasks.filter((t) => t.createdDate >= start && t.createdDate <= end);
   }
-}; // проверить
+};
 
 const clearShortTasks = () => {
   tasks = tasks.filter((t) => t.title.length >= 5);
-}; // проверить
+};
 
 const changeTask = (index, newTitle = '') => {
   if (index >= 0 && index < tasks.length) {
@@ -42,7 +36,7 @@ const changeTask = (index, newTitle = '') => {
     return;
   }
   console.log('Такой задачи не существует');
-}; // проверить
+};
 
 const showTasks = () => {
   if (!tasks.length) {
